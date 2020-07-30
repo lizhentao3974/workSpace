@@ -1,0 +1,39 @@
+server:
+  port: 8086
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-prefix: t_
+  configuration:
+    map-underscore-to-camel-case: false
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3303/shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 100
+      max-active: 1000
+      min-idle: 5
+      max-wait: 60000
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      test-on-borrow: true
+      test-on-return: true
+  application:
+    name: shop-area-api
+
+eureka:
+  client:
+    register-with-eureka: true #指明将该微服务(本项目)注册到注册中心
+    fetch-registry: true #指明该微服务(本项目)可以从注册中心获取信息
+    service-url:
+      defaultZone: http://localhost:8888/eureka/ #指明注册中心的位置
+  #    registry-fetch-interval-seconds: 10
+  instance:
+    prefer-ip-address: true #执行在注册中心上注册时，显示是ip地址
